@@ -1,22 +1,24 @@
-CREATE TABLE Users (
-    UserID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    Phone VARCHAR(15)
+CREATE TABLE user (
+  UserID INT PRIMARY KEY AUTO_INCREMENT,
+  FullName VARCHAR(100),
+  Email VARCHAR(100) UNIQUE,
+  Phone VARCHAR(20)
 );
 
-CREATE TABLE Events (
-    EventID INT AUTO_INCREMENT PRIMARY KEY,
-    Title VARCHAR(100) NOT NULL,
-    Date DATE NOT NULL,
-    Location VARCHAR(100) NOT NULL
+CREATE TABLE event (
+  EventID INT PRIMARY KEY AUTO_INCREMENT,
+  Title VARCHAR(100),
+  Description TEXT,
+  Date DATE,
+  Location VARCHAR(100),
+  Capacity INT
 );
 
-CREATE TABLE Registrations (
-    RegID INT AUTO_INCREMENT PRIMARY KEY,
-    UserID INT,
-    EventID INT,
-    RegDate DATE,
-    FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (EventID) REFERENCES Events(EventID)
+CREATE TABLE registration (
+  RegistrationID INT PRIMARY KEY AUTO_INCREMENT,
+  UserID INT,
+  EventID INT,
+  RegistrationDate DATE,
+  FOREIGN KEY (UserID) REFERENCES user(UserID),
+  FOREIGN KEY (EventID) REFERENCES event(EventID)
 );
